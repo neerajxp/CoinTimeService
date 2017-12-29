@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  cointimewebsite:
+    image: cointimewebsite
+    build:
+      context: .\CoinTimeWebsite
+      dockerfile: Dockerfile
