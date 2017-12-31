@@ -7,13 +7,13 @@ using static CoinTimeWebsite.Models.CoinbaseExchangeRateModel;
 
 namespace CoinTimeWebsite.Models
 {
-    public static class FeedsViewModel
+    public static class CoinTimeViewModel
     {
         public static string GetCoinbaseExchangeRate()
         {
             CoinTimeService.CTSerrviceClient proxy = new CoinTimeService.CTSerrviceClient();
             var data = proxy.GetCoinbaseExchangeRate();
-            var result = JsonConvert.DeserializeObject<Rootobject>(data);
+            //var result = JsonConvert.DeserializeObject<Rootobject>(data);
             return data;
         }
     }

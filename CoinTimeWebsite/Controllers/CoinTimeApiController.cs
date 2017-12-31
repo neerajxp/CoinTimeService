@@ -1,24 +1,25 @@
 ﻿using CoinTimeWebsite.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using static CoinTimeWebsite.Models.CoinbaseExchangeRateModel;
 namespace CoinTimeWebsite.Controllers 
 {
     [RoutePrefix("api/cointime")]
-    public class CTApiController : ApiController
+    public class CoinTimeApiController : ApiController
     {
         // GET api/<controller>
-        [Route("")]
+        [Route("GetCoinbaseExchangeRate")]
         [HttpGet]
         public string GetCoinbaseExchangeRate()
         {
-            var data = FeedsViewModel.GetCoinbaseExchangeRate();
-            return data;
-            
+            var data = CoinTimeViewModel.GetCoinbaseExchangeRate();
+            var result = JsonConvert.DeserializeObject<Rootobject>(data);
+            return data;  
         }
 
         // GET api/<controller>/5

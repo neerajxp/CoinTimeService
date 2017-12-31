@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Currency Exchange Rates";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script lang="ja" type="text/javascript">
+    function getExchangeRates()
+    {
+        $.ajax({
+            type: "GET",
+            url: "https://api.coinbase.com/v2/exchange-rates",
+            dataType: "json",
+            success: function (data) {
+                debugger;
+                var myJsonObject = data;
+                contentType: "application/json";
+                $.each(myJsonObject, function(i, mobj){
+                    $("#curtab").append('<tr><td>' + mobj.currency + '</td></tr>' +
+                        '<tr><td>' + mobj.rates + '</td></tr>');
+                });
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+</script>
+@using (Html.BeginForm())
+{
+    <input id="btnget" type="button" onclick="getExchangeRates()" value="GetData" />
+    <table id="curtab" border="1" width="70%"><tr><td>test</td></tr></table>
+}
+
+<h2>Currency Exchange Rates</h2>
+
