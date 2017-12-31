@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTimeService", "CoinTimeService.csproj", "{E9AAB8FE-8A9B-4187-BBA4-977D05222126}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTimeWebsite", "CoinTimeWebsite\CoinTimeWebsite.csproj", "{F4A12D51-A3C9-472B-BBC2-92F1D1B3B7FD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9AAB8FE-8A9B-4187-BBA4-977D05222126} = {E9AAB8FE-8A9B-4187-BBA4-977D05222126}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinTimeWebsite.Tests", "CoinTimeWebsite.Tests\CoinTimeWebsite.Tests.csproj", "{2522486F-A797-42BF-B140-20F84A5094E8}"
 EndProject

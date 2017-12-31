@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CoinTimeService
 {
@@ -12,22 +15,16 @@ namespace CoinTimeService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class CTService : ICTSerrvice
     {
-        public string GetData(int value)
+        public async Task<string> GetCoinbaseExchangeRate()
         {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            if (composite == null)
+            using (HttpClient Client = new HttpClient())
             {
-                throw new ArgumentNullException("composite");
+                string url = @"https://api.coinbase.com/v2/exchange-rates";
+                HttpClient client = new HttpClient();
+                var response = await client.GetStringAsync(new Uri(url));
+                //var result = JsonConvert.DeserializeObject <RootObject>
+                return response;
             }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
         }
     }
 }
