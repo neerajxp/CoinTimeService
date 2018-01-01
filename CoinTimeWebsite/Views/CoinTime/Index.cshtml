@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Currency Exchange Rates";
 }
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -15,8 +14,10 @@
                 var myJsonObject = data;
                 contentType: "application/json";
                 $.each(myJsonObject, function(i, mobj){
-                    $("#curtab").append('<tr><td>' + mobj.currency + '</td></tr>' +
-                        '<tr><td>' + mobj.rates + '</td></tr>');
+                    var myrates = mobj.rates;                    
+                    $.each(myrates, function (colname, colvalue) {                        
+                        $("#curtab").append('<tr><td>' + colname + '</td><td>' + colvalue + '</td></tr>'); 
+                    });
                 });
             },
             error: function (xhr) {
@@ -29,7 +30,7 @@
 @using (Html.BeginForm())
 {
     <input id="btnget" type="button" onclick="getExchangeRates()" value="GetData" />
-    <table id="curtab" border="1" width="70%"><tr><td>test</td></tr></table>
+    <table id="curtab" border="1" width="80%"><tr><td><b>Currency</b></td><td><b>Rate($)</b></td></tr></table>
 }
 
 <h2>Currency Exchange Rates</h2>
